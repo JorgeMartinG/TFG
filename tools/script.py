@@ -88,15 +88,16 @@ class Database:
                 try:
                     for query in cursor.execute(db_file.read() , multi=True):
                         query.fetchall()
+                    
                     database.commit()
 
                 except mysql.connector.Error as err:
                     print(f'{self.create}{RED}{self.failed}{END}, {err}')
 
-                else:
-                    cursor.close()
+                else:     
                     print(f'{self.create}{GRE}{self.success}{END}')
-        database.close()
+                    cursor.close()
+                    database.close()
 
     def connection_database(self):
 
@@ -121,10 +122,6 @@ class Database:
             open(self.stash_data, 'r') as stash_file):
                 pass
 
-            
-
-
-        
 
  
 Database().creation_database()
