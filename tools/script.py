@@ -67,7 +67,7 @@ class Database:
         self.trade_data = '{}\\{}'.format(PROJECT_ROOT, self.datafiles.get('trade_data'))
         self.stash_data = '{}\\{}'.format(PROJECT_ROOT, self.datafiles.get('stash_data'))
         
-    
+
     def creation_database(self) -> None:
 
         try:
@@ -77,21 +77,26 @@ class Database:
                 password=self.password)
 
         except mysql.connector.Error as err:
-            print(f'{self.mysql_connection}{RED}{self.failed}{END}')
+            print(f'{self.mysql_connection}{RED}{self.failed}{END}: {err}')
 
         else:
-            print(f'{self.mysql_connection}{GRE}{self.success}{END}')
+            print(f'{self.mysql_connection}{GRE}{self.success}{END}\t({database.get_server_info()})')
             cursor = database.cursor()
+            
 
             with open(self.sql_file_path, 'r') as db_file:
                 try:
-                    cursor.execute(db_file.read(), multi=True)
+                    for query in cursor.execute(db_file.read() , multi=True):
+                        query.fetchall()
+                    database.commit()
 
                 except mysql.connector.Error as err:
-                    print(f'{self.create}{RED}{self.failed}{END}', err)
+                    print(f'{self.create}{RED}{self.failed}{END}, {err}')
 
                 else:
+                    cursor.close()
                     print(f'{self.create}{GRE}{self.success}{END}')
+        database.close()
 
     def connection_database(self):
 
@@ -103,7 +108,7 @@ class Database:
                 password=self.password)
 
         except mysql.connector.Error as err:
-            print(f'{self.db_connect}{self.database}: {RED}{self.failed}{END}' + err)
+            print(f'{self.db_connect}{self.database}: {RED}{self.failed}{END}, {err}')
 
         else:
             print(f'{self.db_connect}{self.database}: {GRE}{self.success}{END}')
@@ -114,12 +119,12 @@ class Database:
             open(self.item_data, 'r') as item_file,
             open(self.trade_data, 'r') as trade_file,
             open(self.stash_data, 'r') as stash_file):
+                pass
 
-
-
+            
 
 
         
 
  
-Database().connection_database()
+Database().creation_database()
