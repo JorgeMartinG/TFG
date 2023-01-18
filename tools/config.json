@@ -8,9 +8,17 @@
 
     },
     "errorcode" : {
-        "con_error" : "Error trying to connect to database: ",
-        "con_success" : "Sucessful connection to database: ",
-        "create_error" : "Failed to create: ",
-        "create_success" : "Success creating: "
+        "connect" : "MySQL connection: ",
+        "create" : "Database creation: ",
+        "db_connect" : "Connection to database ",
+        "data_insert" : "Data insertion into ",
+        "success" : "Success",
+        "failed" : "Failed"
+    },
+    "datafile" : {
+        "user_data" : "../database/user_data.sql",
+        "item_data" : "../database/item_data.sql",
+        "trade_data" : "../database/trade_data.sql",
+        "stash_data" : "../database/stash_data.sql"
     }
  }

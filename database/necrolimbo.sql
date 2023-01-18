@@ -20,8 +20,8 @@ CREATE TABLE `item`(
     `class` varchar(40) NOT NULL,
 	PRIMARY KEY (id)
 );
-DROP TABLE IF EXISTS `exchange`;
-CREATE TABLE `exchange`(
+DROP TABLE IF EXISTS `trade`;
+CREATE TABLE `trade`(
 	`id` int AUTO_INCREMENT,
     `date` datetime NOT NULL,
     `id_user` int,
