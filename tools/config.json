@@ -1,0 +1,16 @@
+{
+    "database" : {
+        "file" : "../database/necrolimbo.sql",
+        "host" : "localhost",
+        "database" : "necrolimbo",
+        "username" : "root",
+        "password" : ""
+
+    },
+    "errorcode" : {
+        "con_error" : "Error trying to connect to database: ",
+        "con_success" : "Sucessful connection to database: ",
+        "create_error" : "Failed to create: ",
+        "create_success" : "Success creating: "
+    }
+ }

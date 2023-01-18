@@ -1,0 +1,94 @@
+*{
+}
+body{
+    /*
+    background-image:url('resources/wallpaper1920x1080.gif');
+    background-size: cover;
+    */
+    background-color: #696969;
+    background-image: url('resources/dark-exa.png');
+}
+/* Webpage elements */
+.login{
+    margin:0 auto;
+    background-color: transparent;
+    width:fit-content
+}
+div.field{
+    display:flex;
+    border-bottom:2px solid #FFF;
+    width:fit-content
+}
+input{
+    font-family:Verdana;
+    color:#FFF;
+    caret-color:#FFF;
+}
+input.user-field, 
+input.password-field,
+input.mail-field{
+    border:0;
+    outline: none;
+    background-color:transparent;
+}
+input.user-field::placeholder, 
+input.password-field::placeholder,
+input.mail-field::placeholder{
+    text-align:center;
+    color:#FFF;
+    padding-left:0;
+    font-family:Verdana;
+}
+/* Login Icons */
+.mail-icon{
+    background-image:url("resources/icon/mail-1-white.png");
+}
+.lock-icon{
+    background-image:url("resources/icon/lock-white-1.png");
+}
+.user-icon{
+    background-image:url("resources/icon/user-white-1.png");
+}
+.mail-icon, 
+.user-icon, 
+.lock-icon{
+    display:block;
+    background-size:24px;
+    width:24px;
+    height:24px;
+    transition:0.3s;
+}
+.mail-icon:hover{
+    background-image:url("resources/icon/mail-2-white.png");
+}
+
+.user-icon:hover{
+    background-image:url("resources/icon/user-white-2.png");
+}
+
+.lock-icon:hover{
+    background-image:url("resources/icon/lock-white-2.png");
+}
+.mail-icon:hover,
+.user-icon:hover,
+.lock-icon:hover{
+    transition:0.3s;
+}
+
+.frame{
+    background:#000 url('resources/weapon-rare-frame.png') no-repeat;
+    background-size:200px; 
+    position:absolute;
+    margin:0 auto;
+    width: 200px;
+    height: 200px;
+    box-shadow:2px 2px 10px 4px #000;
+}
+.weapon{
+    background:url('resources/weapons/crescent_moon_axe.png') no-repeat;
+    background-size:170px; 
+    position: relative;
+    inset:15px 15px 15px 15px;
+    width: 170px;;
+    height:170px;
+}
