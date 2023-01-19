@@ -34,7 +34,7 @@ def runQuery(sql):
         dataframe = pd.DataFrame(data)
         cursor.close()
         database.close()
-        print(f'{sql}', dataframe)
+        print(dataframe)
 
 
 
