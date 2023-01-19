@@ -57,16 +57,12 @@ class Database:
         self.mysql_connection = self.errors.get('connect')
         self.create = self.errors.get('create')
         self.db_connect = self.errors.get('db_connect')
-        self.insert = self.errors.get('db_insert')
+        self.insert = self.errors.get('data_insert')
         self.success = self.errors.get('success') 
         self.failed = self.errors.get('failed')
 
-        # Database data files
-        self.user_data = '{}\\{}'.format(PROJECT_ROOT, self.datafiles.get('user_data'))
-        self.item_data = '{}\\{}'.format(PROJECT_ROOT, self.datafiles.get('item_data'))
-        self.trade_data = '{}\\{}'.format(PROJECT_ROOT, self.datafiles.get('trade_data'))
-        self.stash_data = '{}\\{}'.format(PROJECT_ROOT, self.datafiles.get('stash_data'))
-        
+        # Database data file
+        self.data = '{}\\{}'.format(PROJECT_ROOT, self.datafiles.get('data'))
 
     def creation_database(self) -> None:
 
@@ -84,9 +80,9 @@ class Database:
             cursor = database.cursor()
             
 
-            with open(self.sql_file_path, 'r') as db_file:
+            with open(self.sql_file_path, 'r') as f:
                 try:
-                    for query in cursor.execute(db_file.read() , multi=True):
+                    for query in cursor.execute(f.read() , multi=True):
                         query.fetchall()
                     
                     database.commit()
@@ -98,7 +94,7 @@ class Database:
                     print(f'{self.create}{GRE}{self.success}{END}')
                     cursor.close()
                     database.close()
-
+                    
     def connection_database(self):
 
         try:
@@ -115,13 +111,24 @@ class Database:
             print(f'{self.db_connect}{self.database}: {GRE}{self.success}{END}')
             cursor = database.cursor()
 
-            with (
-            open(self.user_data, 'r') as user_file, 
-            open(self.item_data, 'r') as item_file,
-            open(self.trade_data, 'r') as trade_file,
-            open(self.stash_data, 'r') as stash_file):
-                pass
+            with open(self.data, 'r') as f:
+
+                try:
+                    for query in cursor.execute(f.read() , multi=True):
+                        query.fetchall()
+
+                    database.commit()
+
+                except mysql.connector.Error as err:
+                    print(f'{self.insert}{self.database}: {RED}{self.failed}{END}, {err}')
+                
+                else:
+                    print(f'{self.insert}{self.database}: {GRE}{self.success}{END}')
+                    cursor.close()
+                    database.close()
+
 
 
  
 Database().creation_database()
+Database().connection_database()

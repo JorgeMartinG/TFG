@@ -16,9 +16,6 @@
         "failed" : "Failed"
     },
     "datafile" : {
-        "user_data" : "../database/user_data.sql",
-        "item_data" : "../database/item_data.sql",
-        "trade_data" : "../database/trade_data.sql",
-        "stash_data" : "../database/stash_data.sql"
+        "data" : "../database/data.sql"
     }
  }
