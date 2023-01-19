@@ -3,12 +3,7 @@ import mysql.connector
 import pandas as pd
 
 
-def main():
-    
-    Database().creation_database()
-    Database().connection_database()
-
-def runQuery(sql):
+def run_query(sql):
 
     db_data = GetConfig().db_data()
 
@@ -30,7 +25,12 @@ def runQuery(sql):
         print(e)
 
     else:       
-        dataframe = pd.DataFrame(data)
+        df = pd.DataFrame(data)
         cursor.close()
         database.close()
-        print(dataframe)
+        return df
+
+def main() -> None:
+    
+    Database().creation_database()
+    Database().connection_database()
