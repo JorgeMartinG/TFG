@@ -54,12 +54,12 @@ class Database:
         self.sql_file_path = '{}\\{}'.format(PROJECT_ROOT, self.sql_file)
 
         # Connection error messages
-        self.mysql_connection = self.errors.get('connect')
-        self.create = self.errors.get('create')
-        self.db_connect = self.errors.get('db_connect')
-        self.insert = self.errors.get('data_insert')
-        self.success = self.errors.get('success') 
-        self.failed = self.errors.get('failed')
+        self.sql_conn = self.errors.get('sql_conn')
+        self.db_creat = self.errors.get('creation')
+        self.dbs_conn = self.errors.get('dbs_conn')
+        self.data_ins = self.errors.get('data_ins')
+        self.scess_in = self.errors.get('scss_msg')   
+        self.faild_at = self.errors.get('fail_msg')
 
         # Database data file
         self.data = '{}\\{}'.format(PROJECT_ROOT, self.datafiles.get('data'))
@@ -72,11 +72,11 @@ class Database:
                 username=self.username, 
                 password=self.password)
 
-        except mysql.connector.Error as err:
-            print(f'{self.mysql_connection}{RED}{self.failed}{END}: {err}')
+        except mysql.connector.Error as mysql_conn_e:
+            print(f'{self.sql_conn}{RED}{self.faild_at}{END}: {mysql_conn_e}')
 
         else:
-            print(f'{self.mysql_connection}{GRE}{self.success}{END}\t({database.get_server_info()})')
+            print(f'{self.sql_conn}{GRE}{self.scess_in}{END}\t({database.get_server_info()})')
             cursor = database.cursor()
             
 
@@ -87,15 +87,15 @@ class Database:
                     
                     database.commit()
 
-                except mysql.connector.Error as err:
-                    print(f'{self.create}{RED}{self.failed}{END}, {err}')
+                except mysql.connector.Error as db_creation_e:
+                    print(f'{self.db_creat}{RED}{self.faild_at}{END}, {db_creation_e}')
 
                 else:     
-                    print(f'{self.create}{GRE}{self.success}{END}')
+                    print(f'{self.db_creat}{GRE}{self.scess_in}{END}')
                     cursor.close()
                     database.close()
                     
-    def connection_database(self):
+    def connection_database(self) -> None:
 
         try:
             database = mysql.connector.connect(
@@ -104,11 +104,11 @@ class Database:
                 username=self.username, 
                 password=self.password)
 
-        except mysql.connector.Error as err:
-            print(f'{self.db_connect}{self.database}: {RED}{self.failed}{END}, {err}')
+        except mysql.connector.Error as db_conn_e:
+            print(f'{self.dbs_conn}{self.database}: {RED}{self.faild_at}{END}, {db_conn_e}')
 
         else:
-            print(f'{self.db_connect}{self.database}: {GRE}{self.success}{END}')
+            print(f'{self.dbs_conn}{self.database}: {GRE}{self.scess_in}{END}')
             cursor = database.cursor()
 
             with open(self.data, 'r') as f:
@@ -119,16 +119,10 @@ class Database:
 
                     database.commit()
 
-                except mysql.connector.Error as err:
-                    print(f'{self.insert}{self.database}: {RED}{self.failed}{END}, {err}')
+                except mysql.connector.Error as data_ins_e:
+                    print(f'{self.data_ins}{self.database}: {RED}{self.faild_at}{END}, {data_ins_e}')
                 
                 else:
-                    print(f'{self.insert}{self.database}: {GRE}{self.success}{END}')
+                    print(f'{self.data_ins}{self.database}: {GRE}{self.scess_in}{END}')
                     cursor.close()
                     database.close()
-
-
-
- 
-Database().creation_database()
-Database().connection_database()
