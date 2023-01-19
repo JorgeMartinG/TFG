@@ -8,12 +8,12 @@
 
     },
     "errorcode" : {
-        "connect" : "MySQL connection: ",
-        "create" : "Database creation: ",
-        "db_connect" : "Connection to database ",
-        "data_insert" : "Data insertion into ",
-        "success" : "Success",
-        "failed" : "Failed"
+        "sql_conn" : "MySQL connection: ",
+        "creation" : "Database creation: ",
+        "dbs_conn" : "Connection to database ",
+        "data_ins" : "Data insertion into ",
+        "scss_msg" : "Success",
+        "fail_msg" : "Failed"
     },
     "datafile" : {
         "data" : "../database/data.sql"

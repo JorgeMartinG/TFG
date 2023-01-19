@@ -3,7 +3,6 @@ import mysql.connector
 import pandas as pd
 
 
-
 def main():
     
     Database().creation_database()
@@ -35,7 +34,3 @@ def runQuery(sql):
         cursor.close()
         database.close()
         print(dataframe)
-
-
-
-    

@@ -12,7 +12,7 @@ class GetConfig:
 
     def __init__(self) -> None:
         
-        self.config_file = 'config.json'
+        self.config_file = 'json\config.json'
         self.config_path = f'{PROJECT_ROOT}\\{self.config_file}'
         
     def get_data(self) -> dict:
